@@ -1,0 +1,13 @@
+node_modules/
+.env
+.env.local
+.env.*.local
+.env.cloud
+.vercel/
+coverage/
+backup/
+.DS_Store
+*.log
+secrets.env
+DEPLOY-INFO.txt
+.vercel

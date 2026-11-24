@@ -1,0 +1,12 @@
+.env
+.env.*
+.env.example
+backup
+tests
+supabase
+scripts
+node_modules
+README.md
+*.log
+secrets.env
+DEPLOY-INFO.txt
