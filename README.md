@@ -2,6 +2,12 @@
 
 Sistem pencoblosan digital untuk pemilihan taruna. Frontend statis dengan tampilan yang sama seperti versi sebelumnya, backend Vercel Serverless Functions, database dan penyimpanan foto di Supabase.
 
+- **Website:** <https://web-pencoblosan.vercel.app>
+- **Repository:** <https://github.com/Hadi-sukabelajar/web-pencoblosan>
+- **Health check:** <https://web-pencoblosan.vercel.app/api/health>
+
+> Repository `main` terhubung ke project Vercel `web-pencoblosan`. Setiap push ke `main` otomatis memicu deploy production; branch lain menjadi preview deployment.
+
 ## Arsitektur
 
 ```text
@@ -124,23 +130,33 @@ Server lokal menyajikan `public/index.html` dan meneruskan `/api/*` ke function 
 
 ## 4. Deploy ke Vercel
 
-1. Push project ini ke GitHub/GitLab.
-2. Import repository di [vercel.com/new](https://vercel.com/new).
-3. Framework Preset: **Other**. Build Command: kosong. Output Directory: `public`.
-4. Tambahkan environment variables untuk **Production** (dan Preview bila perlu):
+Project Vercel sudah dibuat dan tersambung ke repository GitHub ini (`Hadi-sukabelajar/web-pencoblosan`, branch produksi `main`). Alur normalnya cukup:
+
+```bash
+git add .
+git commit -m "pesan perubahan"
+git push origin main
+```
+
+Vercel membangun dan menerbitkan otomatis. Tidak perlu build command; `vercel.json` sudah mengatur output directory `public`, rewrite `/api/*`, dan header keamanan.
+
+Untuk memasang ulang dari nol:
+
+1. Buka [vercel.com/new](https://vercel.com/new), pilih repository GitHub ini.
+2. Framework Preset: **Other**. Build Command: kosong. Output Directory: `public`.
+3. Tambahkan environment variables untuk **Production** (dan Preview bila perlu):
    - `SUPABASE_URL`
    - `SUPABASE_SERVICE_ROLE_KEY`
    - `SESSION_SECRET`
    - `ADMIN_PIN_HASH`
    - `SUPABASE_BUCKET` (opsional)
-5. Deploy.
-6. Buka domain Vercel, login admin dengan PIN yang sudah di-hash.
+4. Deploy, lalu sambungkan domain. Setiap push ke `main` berikutnya otomatis ter-deploy.
 
 Jika deploy lewat CLI:
 
 ```bash
 npm i -g vercel
-vercel
+vercel link
 vercel --prod
 ```
 
